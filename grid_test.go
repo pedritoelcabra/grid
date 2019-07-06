@@ -41,3 +41,34 @@ func TestRadius(t *testing.T) {
 		}
 	}
 }
+
+func TestGrid_Tile(t *testing.T) {
+	grid1 := New(100)
+	tile1 := grid1.Tile(Coord(1, 1))
+	if tile1.X() != 1 || tile1.Y() != 1 {
+		t.Errorf("Tile at %d / %d, returned %d / %d", 1, 1, tile1.X(), tile1.Y())
+	}
+	tile2 := grid1.Tile(Coord(23, 47))
+	if tile2.X() != 23 || tile2.Y() != 47 {
+		t.Errorf("Tile at %d / %d, returned %d / %d", 1, 1, tile2.X(), tile2.Y())
+	}
+}
+
+func TestGrid_Conversions(t *testing.T) {
+	cases := []struct {
+		x, y int
+	}{
+		{1, 1},
+		{12, 99},
+		{43, 60},
+		{22, 1},
+	}
+	aGrid := New(100)
+	for _, c := range cases {
+		index := aGrid.gridIndex(c.x, c.y)
+		x, y := aGrid.gridCoordinates(index)
+		if x != c.x || y != c.y {
+			t.Errorf("%d / %d converted to %d / %d", c.x, c.y, x, y)
+		}
+	}
+}
