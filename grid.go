@@ -43,7 +43,7 @@ func (g grid) Tile(c coord) tile {
 }
 
 func (g grid) initTile(c coord) tile {
-	return tile{c, make(map[string]int)}
+	return tile{c, make(map[int]int)}
 }
 
 func (g grid) gridIndex(x, y int) int {

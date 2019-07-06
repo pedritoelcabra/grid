@@ -72,3 +72,22 @@ func TestGrid_Conversions(t *testing.T) {
 		}
 	}
 }
+
+func TestGrid_SetGet(t *testing.T) {
+	const Height = 1
+	aGrid := New(100)
+	gotHeight := aGrid.Tile(Coord(1, 1)).Get(Height)
+	if gotHeight != 0 {
+		t.Errorf("Expected uninitialized value to be %d, got %d", 0, gotHeight)
+	}
+	newHeight := 55
+	aGrid.Tile(Coord(1, 1)).Set(Height, newHeight)
+	gotHeight = aGrid.Tile(Coord(1, 1)).Get(Height)
+	if gotHeight != newHeight {
+		t.Errorf("Expected value to be %d, got %d", newHeight, gotHeight)
+	}
+	gotHeight = aGrid.Tile(Coord(1, 1)).Get(Height)
+	if gotHeight != 0 {
+		t.Errorf("Expected uninitialized value to be %d, got %d", 0, gotHeight)
+	}
+}
