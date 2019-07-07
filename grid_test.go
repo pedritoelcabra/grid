@@ -86,7 +86,7 @@ func TestGrid_SetGet(t *testing.T) {
 	if gotHeight != newHeight {
 		t.Errorf("Expected value to be %d, got %d", newHeight, gotHeight)
 	}
-	gotHeight = aGrid.Tile(Coord(1, 1)).Get(Height)
+	gotHeight = aGrid.Tile(Coord(2, 1)).Get(Height)
 	if gotHeight != 0 {
 		t.Errorf("Expected uninitialized value to be %d, got %d", 0, gotHeight)
 	}
