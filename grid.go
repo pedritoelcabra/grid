@@ -36,7 +36,7 @@ func (g *grid) Tile(tileCoord coord) *tile {
 func (g *grid) chunkIndex(x, y int) int {
 	x += GridOffset
 	y += GridOffset
-	if x < 1 || x > GridSize || y < 1 || y > GridSize {
+	if x < 0 || x >= GridSize || y < 0 || y >= GridSize {
 		log.Fatalf("Grid.Tile() requested invalid chunk %d / %d", x, y)
 	}
 	return (x * GridSize) + y
